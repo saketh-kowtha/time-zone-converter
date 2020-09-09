@@ -5,11 +5,30 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "antd": "^4.6.2",
+    "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
     "next": "9.5.3",
+    "ramda": "^0.27.1",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "styled-components": "^5.1.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^10.4.9",
+    "babel-jest": "^26.3.0",
+    "babel-plugin-inline-react-svg": "^1.1.1",
+    "babel-polyfill": "^6.26.0",
+    "husky": "^4.2.5",
+    "jest": "^26.4.2",
+    "prettier": "^2.1.1",
+    "pretty-quick": "^3.0.0"
   }
 }

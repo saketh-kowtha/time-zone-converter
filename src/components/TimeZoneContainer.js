@@ -45,9 +45,9 @@ const TimeZoneContainer = ({
                 onChange={hadnleTimeZoneChange}
             >
                 {TIME_ZONE_CODES.map((tz) => (
-                    <Option key={tz} value={tz}>
+                    <Select.Option key={tz} value={tz}>
                         {replaceUnderScroreWithSpace(tz)}
-                    </Option>
+                    </Select.Option>
                 ))}
             </SelectStyled>
         </TimeZoneSection>

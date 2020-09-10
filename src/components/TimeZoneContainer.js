@@ -34,7 +34,7 @@ const TimeZoneContainer = ({
                 showTime
                 size={'large'}
                 use12Hours={true}
-                format="MMM Do YYYY, ddd, h:mm a"
+                format="MMM Do YYYY, ddd, h:mm A"
                 value={time}
                 onChange={validate}
             />

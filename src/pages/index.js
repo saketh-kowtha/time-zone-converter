@@ -35,19 +35,25 @@ function Home({ ts, from, to }) {
     const [toTz, setToTz] = useState(_toTz)
 
     const onDateChange = (date) => {
-        push(`?ts=${date.getTime()}&from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`)
+        push(
+            `?ts=${date.getTime()}&from=${encodeURIComponent(_fromTz)}&to=${encodeURIComponent(
+                _toTz
+            )}`
+        )
         setTime(date)
     }
 
     const onTimeZoneChange = (tz, side) => {
         if (side === 'from') {
-            push(`?ts=${ts}&from=${encodeURIComponent(tz)}&to=${encodeURIComponent(to)}`)
+            push(`?ts=${ts}&from=${encodeURIComponent(tz)}&to=${encodeURIComponent(_toTz)}`)
             setFromTz(tz)
         } else {
-            push(`?ts=${ts}&from=${encodeURIComponent(from)}&to=${encodeURIComponent(tz)}`)
+            push(`?ts=${ts}&from=${encodeURIComponent(_fromTz)}&to=${encodeURIComponent(tz)}`)
             setToTz(tz)
         }
     }
+
+    if (!fromTz || !toTz || !time) return 'Loading'
     return (
         <Container>
             <head>

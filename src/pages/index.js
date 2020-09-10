@@ -60,9 +60,7 @@ function Home({ ts, from, to }) {
                 <title>Time Zone Converter</title>
             </head>
             <GlobalStyles />
-            <Heading className level={3}>
-                Time Zone Converter
-            </Heading>
+            <Heading level={3}>Time Zone Converter</Heading>
             <Section>
                 <TimeZoneContainer
                     section="from"
@@ -101,6 +99,9 @@ const Container = styled.div`
 
 const Section = styled.section`
     display: flex;
+    @media (max-width: 800px) {
+        flex-direction: column;
+    }
 `
 
 const Heading = styled(Typography.Title)`

@@ -62,11 +62,20 @@ const TimeZoneSection = styled.div`
     padding-top: 24px;
     padding-bottom: 24px;
     padding-left: 50px;
-
+    @media (max-width: 800px) {
+        padding-left: 0px;
+    }
     :first-child {
         padding-left: 0;
         padding-right: 50px;
         border-right: 1px dashed #d9d9d9;
+        @media (max-width: 800px) {
+            justify-content: center;
+            align-items: center;
+            padding-right: 0px;
+            border-right: none;
+            border-bottom: 1px dashed #d9d9d9;
+        }
     }
 `
 

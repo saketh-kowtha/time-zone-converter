@@ -29,30 +29,28 @@ const TimeZoneContainer = ({
     }, [selectedTime, selectedTz])
 
     return (
-        time && (
-            <TimeZoneSection>
-                <DatePickerStyled
-                    showTime
-                    size={'large'}
-                    use12Hours={true}
-                    format="YYYY/MM/DD HH:mm:ss"
-                    value={time}
-                    onChange={validate}
-                />
-                <SelectStyled
-                    size={'large'}
-                    showSearch
-                    value={selectedTz}
-                    onChange={hadnleTimeZoneChange}
-                >
-                    {TIME_ZONE_CODES.map((tz) => (
-                        <Option key={tz} value={tz}>
-                            {replaceUnderScroreWithSpace(tz)}
-                        </Option>
-                    ))}
-                </SelectStyled>
-            </TimeZoneSection>
-        )
+        <TimeZoneSection>
+            <DatePickerStyled
+                showTime
+                size={'large'}
+                use12Hours={true}
+                format="YYYY/MM/DD HH:mm:ss"
+                value={time}
+                onChange={validate}
+            />
+            <SelectStyled
+                size={'large'}
+                showSearch
+                value={selectedTz}
+                onChange={hadnleTimeZoneChange}
+            >
+                {TIME_ZONE_CODES.map((tz) => (
+                    <Option key={tz} value={tz}>
+                        {replaceUnderScroreWithSpace(tz)}
+                    </Option>
+                ))}
+            </SelectStyled>
+        </TimeZoneSection>
     )
 }
 

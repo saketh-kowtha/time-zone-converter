@@ -7,6 +7,7 @@ import Typography from 'antd/lib/typography'
 import GlobalStyles from '../styles/GlobalStyles'
 import { Button, message } from 'antd'
 import { copyToClipboard } from '../utils'
+import moment from 'moment-timezone'
 
 message.config({
     duration: 1,
@@ -15,7 +16,7 @@ message.config({
 
 const getInitialProps = (time, fromTz, toTz) => ({
     _time: time ? new Date(Number(time)) : new Date(),
-    _fromTz: fromTz || TIME_ZONE_CODES[0],
+    _fromTz: fromTz || moment.tz.guess(),
     _toTz: toTz || TIME_ZONE_CODES[TIME_ZONE_CODES.length - 1],
 })
 
@@ -45,10 +46,18 @@ function Home({ ts, from, to }) {
 
     const onTimeZoneChange = (tz, side) => {
         if (side === 'from') {
-            push(`?ts=${ts}&from=${encodeURIComponent(tz)}&to=${encodeURIComponent(_toTz)}`)
+            push(
+                `?ts=${ts || time.getTime()}&from=${encodeURIComponent(tz)}&to=${encodeURIComponent(
+                    _toTz
+                )}`
+            )
             setFromTz(tz)
         } else {
-            push(`?ts=${ts}&from=${encodeURIComponent(_fromTz)}&to=${encodeURIComponent(tz)}`)
+            push(
+                `?ts=${ts || time.getTime()}&from=${encodeURIComponent(
+                    _fromTz
+                )}&to=${encodeURIComponent(tz)}`
+            )
             setToTz(tz)
         }
     }
@@ -94,7 +103,6 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #f5f5f5;
 `
 
 const Section = styled.section`

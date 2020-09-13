@@ -25,7 +25,7 @@ const TimeZoneContainer = ({
     }
 
     useEffect(() => {
-        setTime(moment(selectedTime).tz(selectedTz))
+        setTime(tsToTime(selectedTime, selectedTz))
     }, [selectedTime, selectedTz])
 
     return (

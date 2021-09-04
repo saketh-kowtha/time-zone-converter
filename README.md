@@ -4,12 +4,18 @@ Timezone converter is a webapplication where one can convert specfic time from o
 
 ## Screenshots
 
-![Web view](./output/web-view.png)
-![Mobile view](./output/mobile-view.png)
+*Web view*
+
+<img src="./output/web-view.png" alt="Web view" width="80%" />
+
+
+*Mobile view*
+
+<img src="./output/mobile-view.png" alt="Mobile view" width="30%" />
 
 ## Live url
 
-![Click here](https://time-zone-converter.vercel.app)
+[Click here](https://time-zone-converter.vercel.app)
 
 ## Local setup
 

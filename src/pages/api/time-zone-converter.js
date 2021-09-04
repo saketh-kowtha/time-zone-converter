@@ -3,8 +3,9 @@ import moment from 'moment-timezone'
 export default (req, res) => {
     const format = 'MMMM Do YYYY, dddd, h:mm:ss A'
 
-    const { ts, from, to } = req.query
-    if (!ts || !from || !to) {
+    const { from, to } = req.query
+    if (!ts) ts = new Date().getTime()
+    if (!from || !to) {
         res.statusCode = 401
         return res.send(`Error:Invalid Query params`)
     }

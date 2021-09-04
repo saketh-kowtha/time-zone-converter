@@ -4,6 +4,7 @@ export default (req, res) => {
     const format = 'MMMM Do YYYY, dddd, h:mm:ss A'
 
     const { from, to } = req.query
+    let { ts } = req.query
     if (!ts) ts = new Date().getTime()
     if (!from || !to) {
         res.statusCode = 401

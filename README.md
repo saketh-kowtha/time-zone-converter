@@ -70,7 +70,9 @@ Sample Response:
 | ts     | NO        | This is optional if it didn't passed then API will consider current time as ts | 1630760210003   | Current timestramp              |
 | from   | Yes       | From timezone                                                                  | Asia%2FCalcutta | -                               |
 | to     | Yes       | To timezone                                                                    | Asia%2FCalcutta | -                               |
-| format | No        | Date format                                                                    | DD-MM-YYYY      | ISO 8601, no fractional seconds |
+| format | No        | Date format (For formats you can use momentjs formats)                         | DD-MM-YYYY      | ISO 8601, no fractional seconds |
+
+[Refer this link for formats (format query param)](https://momentjscom.readthedocs.io/en/latest/moment/04-displaying/01-format/)
 
 ### Using with cURL
 

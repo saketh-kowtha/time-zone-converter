@@ -5,15 +5,20 @@ import moment from 'moment-timezone'
 import { TIME_ZONE_CODES } from '../constants'
 import { replaceUnderScroreWithSpace } from '../utils'
 
+const getTimeStrampFromDate = (date) => date.getTime()
+
+const tsToTime = (ts, timeZone) => moment(ts).tz(timeZone)
+
 const TimeZoneInputContainer = ({ selectedTz, selectedTime, onDateChange, onTimeZoneChange }) => {
     const [time, setTime] = useState(null)
+
     const hadnleTimeZoneChange = (tz) => {
         onTimeZoneChange(tz)
         const ts = getTimeStrampFromDate(time.toDate())
         setTime(tsToTime(ts, tz))
     }
 
-    const validate = (date) => {
+    const handleTimeChange = (date) => {
         setTime(date)
         onDateChange(date.utc().toDate())
     }
@@ -24,7 +29,7 @@ const TimeZoneInputContainer = ({ selectedTz, selectedTime, onDateChange, onTime
 
     return (
         <TimezoneInputContainer>
-            <StyledDatePicker showTime size={'large'} use12Hours={true} format="MMM Do YYYY, ddd, h:mm A" value={time} onChange={validate} />
+            <StyledDatePicker showTime size={'large'} use12Hours={true} format="MMM Do YYYY, ddd, h:mm A" value={time} onChange={handleTimeChange} />
             <StyledSelect size={'large'} showSearch value={selectedTz} onChange={hadnleTimeZoneChange}>
                 {TIME_ZONE_CODES.map((tz) => (
                     <Select.Option key={tz} value={tz}>
@@ -69,7 +74,3 @@ const StyledDatePicker = styled(DatePicker)`
 const StyledSelect = styled(Select)`
     width: 300px;
 `
-
-const getTimeStrampFromDate = (date) => date.getTime()
-
-const tsToTime = (ts, timeZone) => moment(ts).tz(timeZone)

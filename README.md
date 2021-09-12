@@ -50,6 +50,7 @@ Query params:
   ts: Timestramp
   *from: Timezone
   *to: Timezone
+  format: Expected date format.
 
 Sample Response:
 {

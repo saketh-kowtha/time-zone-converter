@@ -53,61 +53,47 @@ Query params:
 
 Sample Response:
 {
-  "fromTz": "asia/Bangkok",
-  "toTz": "zulu",
-  "asia/Bangkok": "September 4th 2021, Saturday, 4:00:20 AM",
-  "zulu": "September 3rd 2021, Friday, 10:30:20 PM"
+  "ts": "1631440962290",
+  "fromTz": "asia/kolkata",
+  "toTz": "japan",
+  "asia/kolkata": "12-09-2010",
+  "japan": "12-09-2010",
+  "ISODate": "2021-09-12T10:02:42.290Z",
+  "format": "DD-MM-YYYY"
 }
 ```
 
 ### Query params
 
-| Param | Mandatory | Description                                                                    | Example         | Default value      |
-| ----- | --------- | ------------------------------------------------------------------------------ | --------------- | ------------------ |
-| ts    | NO        | This is optional if it didn't passed then API will consider current time as ts | 1630760210003   | Current timestramp |
-| from  | Yes       | From timezone                                                                  | Asia%2FCalcutta | -                  |
-| to    | Yes       | To timezone                                                                    | Asia%2FCalcutta | -                  |
+| Param  | Mandatory | Description                                                                    | Example         | Default value                   |
+| ------ | --------- | ------------------------------------------------------------------------------ | --------------- | ------------------------------- |
+| ts     | NO        | This is optional if it didn't passed then API will consider current time as ts | 1630760210003   | Current timestramp              |
+| from   | Yes       | From timezone                                                                  | Asia%2FCalcutta | -                               |
+| to     | Yes       | To timezone                                                                    | Asia%2FCalcutta | -                               |
+| format | No        | Date format                                                                    | DD-MM-YYYY      | ISO 8601, no fractional seconds |
 
 ### Using with cURL
 
 ```bash
 curl 'https://time-zone-converter.vercel.app/api/time-zone-converter?ts=1630760210003&from=asia%2FBangkok&to=zulu'
-
-Output:
-{"fromTz":"asia/Bangkok","toTz":"zulu","asia/Bangkok":"September 4th 2021, Saturday, 4:00:20 AM","zulu":"September 3rd 2021, Friday, 10:30:20 PM"}%
 ```
 
 ### Using with Fetch
 
 ```javascript
-fetch("https://time-zone-converter.vercel.app/api/time-zone-converter?ts=1630760210003&from=asia%2FBangkok&to=zulu", {
-  "body": null,
-  "method": "GET",
+fetch('https://time-zone-converter.vercel.app/api/time-zone-converter?ts=1630760210003&from=asia%2FBangkok&to=zulu', {
+    body: null,
+    method: 'GET',
 })
-.then(response => response.json())
-.then(data => console.log(data));
-
-// Output:
-{
-  fromTz: 'asia/Bangkok',
-  toTz: 'zulu',
-  'asia/Bangkok': 'September 4th 2021, Saturday, 4:00:20 AM',
-  zulu: 'September 3rd 2021, Friday, 10:30:20 PM'
-}
+    .then((response) => response.json())
+    .then((data) => console.log(data))
 ```
 
 ### Using with Axios
 
 ```javascript
-axios.get("https://time-zone-converter.vercel.app/api/time-zone-converter?ts=1630760210003&from=asia%2FBangkok&to=zulu")
-.then(response => console.log(response.data))
-.catch(console.error)
-
-// Output:
-{
-  fromTz: 'asia/Bangkok',
-  toTz: 'zulu',
-  'asia/Bangkok': 'September 4th 2021, Saturday, 4:00:20 AM',
-  zulu: 'September 3rd 2021, Friday, 10:30:20 PM'
-}
+axios
+    .get('https://time-zone-converter.vercel.app/api/time-zone-converter?ts=1630760210003&from=asia%2FBangkok&to=zulu')
+    .then((response) => console.log(response.data))
+    .catch(console.error)
 ```

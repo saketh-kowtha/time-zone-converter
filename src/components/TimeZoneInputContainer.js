@@ -33,7 +33,7 @@ const TimeZoneInputContainer = ({ selectedTz, selectedTime, onDateChange, onTime
             <StyledDatePicker showTime size={'large'} use12Hours={true} format="MMM Do YYYY, ddd, h:mm A" value={time} onChange={handleTimeChange} />
             <StyledSelect size={'large'} notFoundContent={notFoundContent} showSearch value={selectedTz} onChange={hadnleTimeZoneChange}>
                 {TIME_ZONE_CODES.map((tz) => (
-                    <Select.Option key={tz} value={tz}>
+                    <Select.Option role="option" key={tz} value={tz}>
                         {replaceUnderScroreWithSpace(tz)}
                     </Select.Option>
                 ))}

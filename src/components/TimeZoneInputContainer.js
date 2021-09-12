@@ -27,10 +27,11 @@ const TimeZoneInputContainer = ({ selectedTz, selectedTime, onDateChange, onTime
         setTime(tsToTime(selectedTime, selectedTz))
     }, [selectedTime, selectedTz])
 
+    const notFoundContent = `Oops!! look like invalid timezone 🤔`
     return (
         <TimezoneInputContainer>
             <StyledDatePicker showTime size={'large'} use12Hours={true} format="MMM Do YYYY, ddd, h:mm A" value={time} onChange={handleTimeChange} />
-            <StyledSelect size={'large'} showSearch value={selectedTz} onChange={hadnleTimeZoneChange}>
+            <StyledSelect size={'large'} notFoundContent={notFoundContent} showSearch value={selectedTz} onChange={hadnleTimeZoneChange}>
                 {TIME_ZONE_CODES.map((tz) => (
                     <Select.Option key={tz} value={tz}>
                         {replaceUnderScroreWithSpace(tz)}
@@ -72,5 +73,6 @@ const StyledDatePicker = styled(DatePicker)`
 `
 
 const StyledSelect = styled(Select)`
+    margin-top: 8px !important;
     width: 300px;
 `

@@ -1,5 +1,5 @@
 import { TIME_ZONE_CODES } from '../constants'
-import { Container, Heading, ShareButton } from '../components'
+import { APIUsageButton, Container, Heading, ShareButton } from '../components'
 import TimeZoneConverter from '../modules/TimeZoneConverter'
 
 export default function Home(props) {
@@ -10,6 +10,7 @@ export default function Home(props) {
                 <TimeZoneConverter {...props} />
                 <ShareButton />
             </Container>
+            <APIUsageButton />
         </>
     )
 }

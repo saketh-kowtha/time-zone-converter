@@ -1,8 +1,6 @@
-import Head from 'next/head'
-
 export default function Seo({}) {
     return (
-        <Head>
+        <>
             <title>Convert timezone</title>
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             <meta name="description" content="Convert time from one zone to other zone." />
@@ -35,6 +33,6 @@ export default function Seo({}) {
             <link rel="shortcut icon" href="/logo.png" />
             <link rel="manifest" href="/manifest.json" />
             <link rel="apple-touch-icon" href="/logo.png" />
-        </Head>
+        </>
     )
 }

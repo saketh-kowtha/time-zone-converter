@@ -13,7 +13,7 @@ export default function Seo({}) {
             <meta name="twitter:creator" content="@sakethkowtha" />
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:url" content="https://time-zone-converter.vercel.app/" />
-            <meta name="twitter:image" content="./logo.png" />
+            <meta name="twitter:image" content="/logo.png" />
             <meta name="application-name" content="Convert timezone" />
             <meta name="apple-mobile-web-app-capable" content="yes" />
             <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -28,13 +28,13 @@ export default function Seo({}) {
             <meta property="og:description" content="Convert time from one zone to other zone." />
             <meta property="og:type" content="website" />
             <meta property="og:site_name" content="Convert timezone" />
-            <meta property="og:image" content="./logo.png" />
+            <meta property="og:image" content="/logo.png" />
 
             <link rel="canonical" href="https://time-zone-converter.vercel.app/" />
-            <link rel="icon" href="./logo.png" />
-            <link rel="shortcut icon" href="./logo.png" />
-            <link rel="manifest" href="./manifest.json" />
-            <link rel="apple-touch-icon" href="./logo.png" />
+            <link rel="icon" href="/logo.png" />
+            <link rel="shortcut icon" href="/logo.png" />
+            <link rel="manifest" href="/manifest.json" />
+            <link rel="apple-touch-icon" href="/logo.png" />
         </Head>
     )
 }

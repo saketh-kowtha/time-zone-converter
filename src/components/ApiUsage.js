@@ -5,12 +5,17 @@ import styled from 'styled-components'
 export default function APIUsageButton() {
     const { push: routerPush } = useRouter()
 
-    const buttonClickHandler = () => routerPush('https://github.com/saketh-kowtha/time-zone-converter#api-usage')
+    const navigateToApiDocs = () => routerPush('https://github.com/saketh-kowtha/time-zone-converter#api-usage')
+
+    const navigateToGithub = () => routerPush('https://github.com/saketh-kowtha/time-zone-converter')
 
     return (
         <ButtonContainer>
-            <Button onClick={buttonClickHandler} type="ghost">
+            <Button onClick={navigateToApiDocs} type="ghost">
                 Api Docs
+            </Button>
+            <Button onClick={navigateToGithub} type="link" danger>
+                Github
             </Button>
         </ButtonContainer>
     )

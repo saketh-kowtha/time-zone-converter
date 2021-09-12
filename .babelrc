@@ -7,9 +7,6 @@
                 "svgo": false
             }
         ],
-        [
-            "styled-components",
-            { "ssr": true, "displayName": false, "fileName": false, "pure": true }
-        ]
+        ["styled-components", { "ssr": true, "displayName": false, "fileName": false, "pure": true }]
     ]
 }

@@ -14,6 +14,7 @@ export default (req, res) => {
     const _from = moment(new Date(Number(ts)).toISOString(), from)
     const result = _from.clone().tz(to)
     res.send({
+        ts,
         fromTz: from,
         toTz: to,
         [from]: _from.format(format),

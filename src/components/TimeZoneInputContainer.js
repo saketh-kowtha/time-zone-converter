@@ -5,16 +5,10 @@ import moment from 'moment-timezone'
 import { TIME_ZONE_CODES } from '../constants'
 import { replaceUnderScroreWithSpace } from '../utils'
 
-const TimeZoneContainer = ({
-    selectedTz,
-    selectedTime,
-    onDateChange,
-    section,
-    onTimeZoneChange,
-}) => {
+const TimeZoneInputContainer = ({ selectedTz, selectedTime, onDateChange, onTimeZoneChange }) => {
     const [time, setTime] = useState(null)
     const hadnleTimeZoneChange = (tz) => {
-        onTimeZoneChange(tz, section)
+        onTimeZoneChange(tz)
         const ts = getTimeStrampFromDate(time.toDate())
         setTime(tsToTime(ts, tz))
     }
@@ -29,34 +23,22 @@ const TimeZoneContainer = ({
     }, [selectedTime, selectedTz])
 
     return (
-        <TimeZoneSection>
-            <DatePickerStyled
-                showTime
-                size={'large'}
-                use12Hours={true}
-                format="MMM Do YYYY, ddd, h:mm A"
-                value={time}
-                onChange={validate}
-            />
-            <SelectStyled
-                size={'large'}
-                showSearch
-                value={selectedTz}
-                onChange={hadnleTimeZoneChange}
-            >
+        <TimezoneInputContainer>
+            <StyledDatePicker showTime size={'large'} use12Hours={true} format="MMM Do YYYY, ddd, h:mm A" value={time} onChange={validate} />
+            <StyledSelect size={'large'} showSearch value={selectedTz} onChange={hadnleTimeZoneChange}>
                 {TIME_ZONE_CODES.map((tz) => (
                     <Select.Option key={tz} value={tz}>
                         {replaceUnderScroreWithSpace(tz)}
                     </Select.Option>
                 ))}
-            </SelectStyled>
-        </TimeZoneSection>
+            </StyledSelect>
+        </TimezoneInputContainer>
     )
 }
 
-export default TimeZoneContainer
+export default TimeZoneInputContainer
 
-const TimeZoneSection = styled.div`
+const TimezoneInputContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding-top: 24px;
@@ -79,12 +61,12 @@ const TimeZoneSection = styled.div`
     }
 `
 
-const DatePickerStyled = styled(DatePicker)`
+const StyledDatePicker = styled(DatePicker)`
     width: 300px;
     margin-bottom: 20px;
 `
 
-const SelectStyled = styled(Select)`
+const StyledSelect = styled(Select)`
     width: 300px;
 `
 

@@ -4,12 +4,11 @@ Timezone converter is a webapplication where one can convert specfic time from o
 
 ## Screenshots
 
-*Web view*
+_Web view_
 
 <img src="./output/web-view.png" alt="Web view" width="80%" />
 
-
-*Mobile view*
+_Mobile view_
 
 <img src="./output/mobile-view.png" alt="Mobile view" width="30%" />
 

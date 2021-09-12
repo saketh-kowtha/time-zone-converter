@@ -1,147 +1,76 @@
-import styled from 'styled-components'
 import { useState } from 'react'
 import { TIME_ZONE_CODES } from '../constants'
-import TimeZoneContainer from '../components/TimeZoneContainer'
 import { useRouter } from 'next/router'
-import Typography from 'antd/lib/typography'
-import GlobalStyles from '../styles/GlobalStyles'
-import { Button, message } from 'antd'
-import { copyToClipboard } from '../utils'
-import moment from 'moment-timezone'
-import Head from 'next/head'
+import { Container, Heading, Section, Loader, ShareButton, TimeZoneInputContainer } from '../components'
+import { constructUrl } from '../utils'
 
-message.config({
-    duration: 1,
-    maxCount: 1,
-})
+export default function Home({ ts, fromTz, toTz }) {
+    const { push: routerPush } = useRouter()
 
-const getInitialProps = (time, fromTz, toTz) => ({
-    _time: time ? new Date(Number(time)) : new Date(),
-    _fromTz: fromTz || moment.tz.guess(),
-    _toTz: toTz || TIME_ZONE_CODES[TIME_ZONE_CODES.length - 1],
-})
+    const [time, setTime] = useState(ts)
 
-const successToast = () => {
-    copyToClipboard(window.location.href)
-    message.success('Link copied to clipboard')
-}
+    const [selectedTimezone, setSelectedTimeZone] = useState({ from: fromTz, to: toTz })
 
-function Home({ ts, from, to }) {
-    const { push } = useRouter()
+    const setFromTz = (from) => setSelectedTimeZone({ ...selectedTimezone, from })
 
-    const { _time, _fromTz, _toTz } = getInitialProps(ts, from, to)
+    const setToTz = (to) => setSelectedTimeZone({ ...selectedTimezone, to })
 
-    const [time, setTime] = useState(_time)
-
-    const [fromTz, setFromTz] = useState(_fromTz)
-    const [toTz, setToTz] = useState(_toTz)
+    const updateUrl = (...args) => {
+        const url = constructUrl(...args)
+        routerPush(url)
+    }
 
     const onDateChange = (date) => {
-        push(
-            `?ts=${date.getTime()}&from=${encodeURIComponent(_fromTz)}&to=${encodeURIComponent(
-                _toTz
-            )}`
-        )
+        updateUrl(date.getTime(), fromTz, toTz)
         setTime(date)
     }
 
-    const onTimeZoneChange = (tz, side) => {
-        if (side === 'from') {
-            push(
-                `?ts=${ts || time.getTime()}&from=${encodeURIComponent(tz)}&to=${encodeURIComponent(
-                    _toTz
-                )}`
-            )
-            setFromTz(tz)
-        } else {
-            push(
-                `?ts=${ts || time.getTime()}&from=${encodeURIComponent(
-                    _fromTz
-                )}&to=${encodeURIComponent(tz)}`
-            )
-            setToTz(tz)
-        }
+    const updateTimezone = ({ ts, tz, from, to, callback: updateTz }) => {
+        updateUrl(ts, from, to)
+        updateTz(tz)
     }
 
-    if (!fromTz || !toTz || !time) return 'Loading'
+    const onFromTzChange = (tz) => updateTimezone({ ts: ts || time.getTime(), from: tz, to: toTz, callback: setFromTz, tz })
+
+    const onToTzChange = (tz) => updateTimezone({ ts: ts || time.getTime(), from: fromTz, to: tz, callback: setToTz, tz })
+
+    if (!selectedTimezone.from || !selectedTimezone.to || !time) return <Loader />
+
+    const sections = [
+        {
+            selectedTz: selectedTimezone.from,
+            selectedTime: time,
+            onDateChange,
+            onTimeZoneChange: onFromTzChange,
+        },
+        {
+            selectedTz: selectedTimezone.to,
+            selectedTime: time,
+            onDateChange,
+            onTimeZoneChange: onToTzChange,
+        },
+    ]
+
     return (
-        <Container>
-            <Head>
-                <title>Time zone converter</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <meta name="description" content="Convert time from one zone to other zone." />
-                <meta name="keywords" content="Timezone, timezone-converter, timezone converter" />
-                <meta name="author" content="Saketh" />
-                <meta property="og:title" content="Time zone converter" />
-                <meta property="og:url" content="https://time-zone-converter.vercel.app/" />
-                <meta
-                    property="og:description"
-                    content="Convert time from one zone to other zone."
-                />
-                <meta property="og:type" content="website" />
-
-                <meta name="twitter:title" content="Time zone converter" />
-                <meta
-                    name="twitter:description"
-                    content="Convert time from one zone to other zone."
-                />
-                <meta name="twitter:creator" content="@sakethkowtha" />
-                <meta name="twitter:card" content="summary_large_image"></meta>
-                <link rel="canonical" href="https://time-zone-converter.vercel.app/" />
-            </Head>
-            <GlobalStyles />
-            <Heading level={3}>Time Zone Converter</Heading>
-            <Section>
-                <TimeZoneContainer
-                    section="from"
-                    selectedTz={fromTz}
-                    selectedTime={time}
-                    onDateChange={onDateChange}
-                    onTimeZoneChange={onTimeZoneChange}
-                />
-
-                <TimeZoneContainer
-                    section="to"
-                    selectedTz={toTz}
-                    selectedTime={time}
-                    onDateChange={onDateChange}
-                    onTimeZoneChange={onTimeZoneChange}
-                />
-            </Section>
-            <ShareButton onClick={successToast} size={'small'} danger type="dashed">
-                Share
-            </ShareButton>
-        </Container>
+        <>
+            <Container>
+                <Heading level={1}>Convert time zone</Heading>
+                <Section>
+                    {sections.map((sectionProps) => (
+                        <TimeZoneInputContainer key={sectionProps.selectedTz} {...sectionProps} />
+                    ))}
+                </Section>
+                <ShareButton />
+            </Container>
+        </>
     )
 }
 
-Home.getInitialProps = ({ query }) => query
-
-const Container = styled.div`
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`
-
-const Section = styled.section`
-    display: flex;
-    @media (max-width: 800px) {
-        flex-direction: column;
+Home.getInitialProps = ({ query }) => {
+    const { ts, from, to } = query
+    return {
+        ts: (ts ? new Date(Number(ts)) : new Date()).getTime(),
+        fromTz: from || Intl.DateTimeFormat().resolvedOptions().timeZone,
+        toTz: to || TIME_ZONE_CODES[TIME_ZONE_CODES.length - 1],
     }
-`
-
-const Heading = styled(Typography.Title)`
-    &.ant-typography {
-        color: #242424;
-        margin-bottom: 20px;
-    }
-`
-
-const ShareButton = styled(Button)`
-    margin-top: 50px;
-`
-
-export default Home
+}

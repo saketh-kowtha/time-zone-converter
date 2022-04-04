@@ -1,7 +1,6 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import  { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
-@primary-color: red;
 /* latin-ext */
 @font-face {
   font-family: 'Lato';

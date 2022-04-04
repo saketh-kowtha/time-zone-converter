@@ -1,22 +1,14 @@
+import { GithubFilled } from '@ant-design/icons'
 import { Button } from 'antd'
-import { useRouter } from 'next/router'
 import styled from 'styled-components'
 
 export default function APIUsageButton() {
-    const { push: routerPush } = useRouter()
-
-    const navigateToApiDocs = () => routerPush('https://github.com/saketh-kowtha/time-zone-converter#api-usage')
-
-    const navigateToGithub = () => routerPush('https://github.com/saketh-kowtha/time-zone-converter')
-
     return (
         <ButtonContainer>
-            <Button onClick={navigateToApiDocs} type="ghost">
-                Api Docs
-            </Button>
-            <Button onClick={navigateToGithub} type="link" danger>
-                Github
-            </Button>
+            {/* <Button target={'_self'} href='https://github.com/saketh-kowtha/time-zone-converter#api-usage' type='link'>
+                Api usage
+            </Button> */}
+            <Button target={'_blank'} href='https://github.com/saketh-kowtha/time-zone-converter' icon={<GithubFilled />} type="text"></Button>
         </ButtonContainer>
     )
 }

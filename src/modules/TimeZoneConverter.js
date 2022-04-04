@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 export default function TimeZoneConverter({ ts, fromTz, toTz }) {
-    const { push: routerPush } = useRouter()
+    const { replace: routerPush } = useRouter()
 
     const [time, setTime] = useState(ts)
 

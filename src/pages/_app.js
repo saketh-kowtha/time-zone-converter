@@ -5,6 +5,7 @@ import 'react-clock/dist/Clock.css';
 import styled from 'styled-components'
 import { Button } from 'antd';
 import { useRouter } from 'next/router';
+import { APIUsageButton } from '../components';
 
 function MyApp({ Component, pageProps }) {
 
@@ -17,6 +18,7 @@ function MyApp({ Component, pageProps }) {
 
     return (
         <>
+            <APIUsageButton />
             <GlobalStyles />
             <Component {...pageProps} />
             <Footer>

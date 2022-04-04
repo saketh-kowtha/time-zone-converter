@@ -18,9 +18,30 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     .react-clock__face{
-        border: 10px solid #966f33;
-        box-shadow: rgb(0 0 0 / 13%) 0px 4px 8px 0px;
+        background: antiquewhite;
     }
+    .react-clock__mark__number{
+        color: #000000cc;
+    }
+    .react-clock__face{
+        border: 24px solid cornsilk;
+        box-shadow: inset 0 3px 6px rgba(0,0,0,0.16), 0 4px 6px rgba(0,0,0,0.45);
+    }
+    .react-clock__second-hand__body {
+        width: 2px !important;
+        top: 10% !important;
+        bottom: 50% !important;
+    }
+
+    .react-clock__minute-hand__body {
+        width: 3px !important;
+    }
+
+    .react-clock__hour-hand__body {
+        width: 5px !important;
+    }
+
 `
 
 export default LiveClock
+

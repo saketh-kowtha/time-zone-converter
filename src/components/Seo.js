@@ -4,13 +4,13 @@ export default function Seo({}) {
             <title>Convert timezone</title>
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             <meta name="description" content="Convert time from one zone to other zone." />
-            <meta name="keywords" content="Timezone, timezone-converter, timezone converter" />
+            <meta name="keywords" content="Timezone, timezone-converter, timezone converter, timefull, time full" />
             <meta name="author" content="Saketh" />
-            <meta name="twitter:title" content="Convert timezone" />
+            <meta name="twitter:title" content="Timefull - Convert timezone" />
             <meta name="twitter:description" content="Convert time from one zone to other zone." />
             <meta name="twitter:creator" content="@sakethkowtha" />
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:url" content="https://time-zone-converter.vercel.app/" />
+            <meta name="twitter:url" content="https://www.timefull.app" />
             <meta name="twitter:image" content="/logo.png" />
             <meta name="application-name" content="Convert timezone" />
             <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -22,13 +22,13 @@ export default function Seo({}) {
             <meta name="msapplication-tap-highlight" content="no" />
 
             <meta property="og:title" content="Convert timezone" />
-            <meta property="og:url" content="https://time-zone-converter.vercel.app/" />
+            <meta property="og:url" content="https://www.timefull.app" />
             <meta property="og:description" content="Convert time from one zone to other zone." />
             <meta property="og:type" content="website" />
             <meta property="og:site_name" content="Convert timezone" />
             <meta property="og:image" content="/logo.png" />
 
-            <link rel="canonical" href="https://time-zone-converter.vercel.app/" />
+            <link rel="canonical" href="https://www.timefull.app" />
             <link rel="icon" href="/logo.png" />
             <link rel="shortcut icon" href="/logo.png" />
             <link rel="manifest" href="/manifest.json" />

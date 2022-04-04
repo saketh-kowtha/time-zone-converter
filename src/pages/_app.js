@@ -1,7 +1,6 @@
 import 'antd/dist/antd.css'
 import { useEffect } from 'react';
 import GlobalStyles from '../styles/GlobalStyles'
-import 'react-clock/dist/Clock.css';
 
 function MyApp({ Component, pageProps }) {
     useEffect(() => {

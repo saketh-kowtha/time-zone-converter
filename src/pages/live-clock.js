@@ -1,20 +1,48 @@
 import Clock from 'react-clock';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components'
+import clock_dial_audio from '../assets/sounds/clock-dial';
+import { Button } from 'antd';
+import { SoundOutlined, NotificationOutlined } from '@ant-design/icons'
+
 
 const LiveClock = () => {
     const [date, setDate] = useState(new Date())
+
+    const audioRef = useRef()
+
+    const speak = text => {
+        var msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        msg.rate = 0.9;
+        msg.lang = 'en-US';
+        window.speechSynthesis.speak(msg);
+    }
     useEffect(() => {
-        const intervelId = setInterval(() => setDate(new Date()), 1000)
+        audioRef.current = new Audio(clock_dial_audio)
+        audioRef.current.muted = true
+        const intervelId = setInterval(() => {
+            setDate(new Date())
+            if (!audioRef.current.muted) {
+                audioRef.current.play()
+            }
+        }, 1000)
         return () => clearInterval(intervelId)
     }, [])
-    return <Container><Clock value={date} size={400} renderNumbers={true} /></Container>
+    return <Container>
+        <Clock value={date} size={400} renderNumbers={true} />
+        <div style={{ marginTop: '20px' }}>
+            <Button icon={<SoundOutlined />} onClick={() => audioRef.current.muted = !audioRef.current.muted}>Mute / Unmute</Button>
+            <Button icon={<NotificationOutlined />} onClick={() => speak(new Date().toLocaleString())}>Speak out</Button>
+        </div>
+    </Container>
 }
 
 const Container = styled.div`
     width: 100%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     .react-clock__face{

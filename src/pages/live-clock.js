@@ -7,7 +7,14 @@ import { SoundOutlined, NotificationOutlined } from '@ant-design/icons'
 
 
 const LiveClock = () => {
-    const [date, setDate] = useState(new Date())
+
+    const getDate = () => {
+        const date = new Date()
+        date.setSeconds(date.getSeconds() + 1)
+        return date
+    }
+
+    const [date, setDate] = useState(getDate())
 
     const audioRef = useRef()
 
@@ -22,7 +29,7 @@ const LiveClock = () => {
         audioRef.current = new Audio(clock_dial_audio)
         audioRef.current.muted = true
         const intervelId = setInterval(() => {
-            setDate(new Date())
+            setDate(getDate())
             if (!audioRef.current.muted) {
                 audioRef.current.play()
             }
